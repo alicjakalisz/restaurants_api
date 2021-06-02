@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 
-@WebMvcTest(RestaurantController.class)
+@WebMvcTest(ResearchResponseController.class)
 public class ResearchResponseControllerTest {
 
     @Autowired
