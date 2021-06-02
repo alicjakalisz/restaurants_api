@@ -1,7 +1,6 @@
 package com.alicja.restaurants.controller;
 
 
-import com.alicja.restaurants.contoller.RestaurantController;
 import com.alicja.restaurants.dto.ResearchResponseDto;
 import com.alicja.restaurants.service.ResearchResponseService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,8 +20,11 @@ import java.util.Optional;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import static org.hamcrest.Matchers.*;
+import com.fasterxml.jackson.core.type.TypeReference;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 import static org.mockito.Mockito.when;

@@ -8,14 +8,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MapperConfig {
 
-@Bean
-public RestaurantMapper restaurantMapper(){
-    return new RestaurantMapper();
-}
+    @Bean
+    public RestaurantMapper restaurantMapper() {
+        return new RestaurantMapper();
+    }
 
-@Bean
-public ResearchResponseMapper researchResponseMapper(){
-    return new ResearchResponseMapper();
-}
+    @Bean
+    public ResearchResponseMapper researchResponseMapper() {
+        return new ResearchResponseMapper();
+    }
 
 }

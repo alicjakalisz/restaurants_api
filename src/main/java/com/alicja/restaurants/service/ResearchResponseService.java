@@ -18,7 +18,12 @@ public class ResearchResponseService {
     static String searchListUrl = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+london+vegan&radius=2000&key=&alt=json";
 
 
+    private JsonConverter jsonConverter;
 
+    @Autowired
+    public ResearchResponseService(JsonConverter jsonConverter) {
+        this.jsonConverter = jsonConverter;
+    }
 
     public List<ResearchResponseDto> getResearchResults(String location, Optional<String> cuisine, Optional<Integer> radius, Optional<Integer> rating) {
         JsonConverter jsonConverter = new JsonConverter();
