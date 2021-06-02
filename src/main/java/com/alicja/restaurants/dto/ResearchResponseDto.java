@@ -1,6 +1,7 @@
 package com.alicja.restaurants.dto;
 
 
+import java.util.Objects;
 
 public class ResearchResponseDto {
 
@@ -67,6 +68,19 @@ public class ResearchResponseDto {
                 ", price_leve=" + price_leve +
                 ", photo='" + photo + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ResearchResponseDto that = (ResearchResponseDto) o;
+        return id == that.id && price_leve == that.price_leve && Objects.equals(name, that.name) && Objects.equals(address, that.address) && Objects.equals(rating, that.rating) && Objects.equals(photo, that.photo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, address, rating, price_leve, photo);
     }
 }
 

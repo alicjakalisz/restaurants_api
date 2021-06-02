@@ -1,6 +1,7 @@
 package com.alicja.restaurants.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Restaurant {
@@ -98,5 +99,18 @@ public class Restaurant {
                 ", phone_number='" + phone_number + '\'' +
                 ", comments='" + comments + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Restaurant that = (Restaurant) o;
+        return id == that.id && address == that.address && price_level == that.price_level && Objects.equals(rating, that.rating) && Objects.equals(photo, that.photo) && Objects.equals(website, that.website) && Objects.equals(user_rating_total, that.user_rating_total) && Objects.equals(phone_number, that.phone_number) && Objects.equals(comments, that.comments);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, address, rating, price_level, photo, website, user_rating_total, phone_number, comments);
     }
 }
