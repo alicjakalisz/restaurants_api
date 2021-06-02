@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+
 @WebMvcTest(ResearchResponseController.class)
 public class ResearchResponseControllerTest {
 
@@ -68,13 +68,13 @@ public class ResearchResponseControllerTest {
 
         ResultActions resultActions = mockMvc.perform(get("/restaurants/search?location=London&cuisine=Vietnamese&radius=500&rating=5"))
                 .andDo(print())
-                .andExpect(status().isOk());
-                //.andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith("application/json"))
-                //.andExpect(jsonPath("$", hasSize(2)))
-                //.andExpect(jsonPath("$[0].id", is(1)))
-                //.andExpect(jsonPath("$[0].name", is("EatActiv")))
-                //.andExpect(jsonPath("$[1].id", is(2)))
-                //.andExpect(jsonPath("$[1].name", is("Pho")));
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith("application/json"))
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[0].name", is("EatActiv")))
+                .andExpect(jsonPath("$[1].id", is(2)))
+                .andExpect(jsonPath("$[1].name", is("Pho")));
 
         MvcResult result = resultActions.andReturn();
         String contentString = result.getResponse().getContentAsString();

@@ -6,6 +6,7 @@ import com.alicja.restaurants.service.RestaurantService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,9 +29,10 @@ public class RestaurantController {
     //get by id
     //they get the list of ResearchResponse based on their search parameters
     @GetMapping("restaurants/{id}")
-    public RestaurantDto getRestaurantDtoById(@PathVariable(name = "id") long id){
+    public ResponseEntity<RestaurantDto> getRestaurantDtoById(@PathVariable(name = "id") long id){
 
-       return restaurantService.getRestaurantDtoById(id);
+       RestaurantDto result = restaurantService.getRestaurantDtoById(id);
+        return ResponseEntity.ok().body(result);
     }
 
 

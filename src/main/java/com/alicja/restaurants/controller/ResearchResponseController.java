@@ -49,12 +49,4 @@ public class ResearchResponseController {
         return ResponseEntity.ok().body(result);
     }
 
-    @GetMapping("restaurants/search2")
-    public ResponseEntity<ResearchResponseDto> getResearchResults2(@RequestParam(value = "location", required = true) String location,
-                                                                   @RequestParam(value = "cuisine", required = false) String cuisine,
-                                                                   @RequestParam(value = "radius", defaultValue = "5000") Integer radius,
-                                                                   @RequestParam(value = "rating", required = false) Integer rating) {
-        return ResponseEntity.ok().body(new ResearchResponseDto(1L,"EatActiv","Poland Street","5",3,"link"));
-    }
-
 }
