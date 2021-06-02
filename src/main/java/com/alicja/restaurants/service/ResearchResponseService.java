@@ -15,7 +15,7 @@ public class ResearchResponseService {
 
     //query parameters need to be dynamic, this is an example, change the https with regex
 
-    static String searchListUrl = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+london+vegan&radius=2000&key=AIzaSyD1R1PC8TDYF40HGb3JZJlWzZ8r0v3tNUw&alt=json";
+    static String searchListUrl = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+london+vegan&radius=2000&key=&alt=json";
 
 
     private JsonConverter jsonConverter;

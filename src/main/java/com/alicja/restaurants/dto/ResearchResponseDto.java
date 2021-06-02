@@ -1,8 +1,10 @@
 package com.alicja.restaurants.dto;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
+import javax.persistence.*;
 import java.util.Objects;
-
 public class ResearchResponseDto {
 
 
