@@ -12,7 +12,7 @@ public class RestaurantService {
 
     //id needs to be dynamic, this is an example
 
-    static String searchListUrl = "https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJsclcktQEdkgRixfvZ2ewghM&key=AIzaSyD1R1PC8TDYF40HGb3JZJlWzZ8r0v3tNUw&language=en";
+    static String searchListUrl = "https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJsclcktQEdkgRixfvZ2ewghM&key=&language=en";
 
 
     public RestaurantDto getRestaurantDtoById(long id) {
