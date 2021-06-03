@@ -2,14 +2,12 @@ package com.alicja.restaurants.controller;
 
 
 import com.alicja.restaurants.dto.ResearchResponseDto;
-import com.alicja.restaurants.service.ResearchResponseService;
+import com.alicja.restaurants.service.RestaurantService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
@@ -40,7 +38,7 @@ public class ResearchResponseControllerTest {
 
     //we are mocking the service object as we need it for controller testing
     @MockBean
-    private ResearchResponseService researchResponseService;
+    private RestaurantService restaurantService;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -62,7 +60,7 @@ public class ResearchResponseControllerTest {
         list.add(new ResearchResponseDto(2L,"Pho","UpperStreet","4",2,"link2"));
 
         //mocking service method and its result
-        when(researchResponseService.getResearchResults("London", Optional.of("Vietnamese"),Optional.of(500),Optional.of(5))).thenReturn(list);
+        when(restaurantService.getResearchResults("London", Optional.of("Vietnamese"),Optional.of(500),Optional.of(5))).thenReturn(list);
 
         //checking if single elements of json match the expected result
 

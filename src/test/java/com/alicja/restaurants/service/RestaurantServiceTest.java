@@ -47,7 +47,9 @@ public class RestaurantServiceTest {
         JsonObject jsonObject = jsonParser.parse(urlContentString).getAsJsonObject();
 
 
-        when(converter.convertStringURLIntoJsonObject(urlContentString)).thenReturn(jsonObject);
+        when(converter.convertStringURLIntoJsonObject(any())).thenReturn(jsonObject);
+        //This method is what you have to test
+        //service.getResearchResults("")
 
       //  Now you have a mock for the jsonConverter that is not really connecting to a URL. Any call to any URL always returns the result from the src/test/resources/google_response.json file.
     }
