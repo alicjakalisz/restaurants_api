@@ -1,4 +1,4 @@
-package RestuarantServiceTest;
+package com.alicja.restaurants.service;
 
 
 import com.alicja.restaurants.json_converter.JsonConverter;
@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 import java.io.*;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -31,7 +32,7 @@ public class RestaurantServiceTest {
         //You need to read as a String the file you placed in src/test/resources with the response from google.
 
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("src/test/resources")));
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("src/test/resources/google_map_search_response.json")));
         StringBuilder result = new StringBuilder();
 
         String line;
