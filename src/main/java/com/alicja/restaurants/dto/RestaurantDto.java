@@ -10,7 +10,7 @@ public class RestaurantDto {
 
 
 
-    private long id;
+    private String id;
 
 
     private String address;
@@ -36,7 +36,7 @@ public class RestaurantDto {
 
     private String comments;
 
-    public RestaurantDto(long id, String address, String rating, int price_level, String photo, String website, String user_rating_total, String phone_number, String comments) {
+    public RestaurantDto(String id, String address, String rating, int price_level, String photo, String website, String user_rating_total, String phone_number, String comments) {
         this.id = id;
         this.address = address;
         this.rating = rating;
@@ -51,7 +51,7 @@ public class RestaurantDto {
     public RestaurantDto() {
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 

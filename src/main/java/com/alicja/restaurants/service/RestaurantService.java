@@ -9,20 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class RestaurantService {
 
-    //id needs to be dynamic, this is an example
 
-    static String prefixURLDetails = "https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJsclcktQEdkgRixfvZ2ewghM&key=&language=en";
+    static String prefixURLDetails = "https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJsclcktQEdkgRixfvZ2ewghM&language=en&key=";
 
-    //  static String searchListUrl = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+london+vegan&radius=2000&key=&alt=json";
     static String prefixURLSearch = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+";
-
-
 
     private JsonConverter jsonConverter;
 
@@ -33,22 +30,30 @@ public class RestaurantService {
 
     //FIRST METHOD
 
-    public RestaurantDto getRestaurantDtoById(long id) {
+    public RestaurantDto getRestaurantDtoById(String id) {
+        RestaurantDto restaurantDto = new RestaurantDto();
+        String apiKey = "AIzaSyCDmH0lnztl9AHa1bjP11bEQzlh2vRYH5A";
+        String URLDetaiñs = prefixURLDetails+apiKey;
+
         try {
-           JsonObject jsonObject = jsonConverter.convertStringURLIntoJsonObject(prefixURLDetails);
+           JsonObject jsonObject = jsonConverter.convertStringURLIntoJsonObject(URLDetaiñs);
+           //String id, String address, String rating, int price_level, String photo,
+            // String website, String user_rating_total, String phone_number, String comments
+
+           //TODO get object by ID from JsonObject
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return restaurantDto;
     }
-
-
     // SECOND METHOD
     public List<ResearchResponseDto> getResearchResults(String location, Optional<String> cuisine, Optional<Integer> radius, Optional<Integer> rating) {
         String searchListUrl = prefixURLSearch + "+" + location + "+" + cuisine +"&radius="+radius+"&alt=json&key=";
         String apiKey = "AIzaSyCDmH0lnztl9AHa1bjP11bEQzlh2vRYH5A";
         searchListUrl = searchListUrl+apiKey;
-
+        List<ResearchResponseDto> researchResponseDtosList = new ArrayList<>();
 
         try {
             JsonObject jsonObject = jsonConverter.convertStringURLIntoJsonObject(searchListUrl);
@@ -63,28 +68,13 @@ public class RestaurantService {
             String price_level = result.getAsJsonObject().get("price_level").getAsString();
             String photo = result.getAsJsonObject().get("photos").getAsJsonArray().get(0).getAsJsonObject().get("html_attributions").getAsString();
 
-
-
+            researchResponseDtosList.add(new ResearchResponseDto(placeId,name,address,rating1,Integer.parseInt(price_level),photo));
         });
-            jsonObject.get("results").getAsJsonObject();
-
-
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        /*
-        * Http Response
-	[{
-
-		"id"
-		"name"
-		"address"
-		"rating"
-		"price_level"
-		"photo"
-	}]*/
-        return null;
+        return researchResponseDtosList;
     }
 }

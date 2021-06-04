@@ -29,7 +29,7 @@ public class RestaurantController {
     //get by id
     //they get the list of ResearchResponse based on their search parameters
     @GetMapping("restaurants/{id}")
-    public ResponseEntity<RestaurantDto> getRestaurantDtoById(@PathVariable(name = "id") long id){
+    public ResponseEntity<RestaurantDto> getRestaurantDtoById(@PathVariable(name = "id") String id){
 
        RestaurantDto result = restaurantService.getRestaurantDtoById(id);
         return ResponseEntity.ok().body(result);

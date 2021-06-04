@@ -9,7 +9,7 @@ public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private String id;
 
     @Column
     private String address;
@@ -35,7 +35,7 @@ public class Restaurant {
     @Column
     private String comments;
 
-    public Restaurant(long id, String address, String rating, int price_level, String photo, String website, String user_rating_total, String phone_number, String comments) {
+    public Restaurant(String id, String address, String rating, int price_level, String photo, String website, String user_rating_total, String phone_number, String comments) {
         this.id = id;
         this.address = address;
         this.rating = rating;
@@ -50,7 +50,7 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
