@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.io.*;
+import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -49,7 +50,7 @@ public class RestaurantServiceTest {
 
         when(converter.convertStringURLIntoJsonObject(any())).thenReturn(jsonObject);
         //This method is what you have to test
-        //service.getResearchResults("")
+        service.getResearchResults("London", Optional.of("vegan"),Optional.of(500),Optional.of(5));
 
       //  Now you have a mock for the jsonConverter that is not really connecting to a URL. Any call to any URL always returns the result from the src/test/resources/google_response.json file.
     }

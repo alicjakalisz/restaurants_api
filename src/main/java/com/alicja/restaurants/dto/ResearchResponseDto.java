@@ -8,7 +8,7 @@ import java.util.Objects;
 public class ResearchResponseDto {
 
 
-    private long id;
+    private String id;
 
 
     private String name;
@@ -24,7 +24,7 @@ public class ResearchResponseDto {
 
     private String photo;
 
-    public ResearchResponseDto(long id, String name, String address, String rating, int price_leve, String photo) {
+    public ResearchResponseDto(String id, String name, String address, String rating, int price_leve, String photo) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -36,7 +36,7 @@ public class ResearchResponseDto {
     public ResearchResponseDto() {
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 

@@ -10,7 +10,7 @@ public class ResearchResponse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private String id;
 
     @Column
     private String name;
@@ -27,7 +27,7 @@ public class ResearchResponse {
     @Column
     private String photo;
 
-    public ResearchResponse(long id, String name, String address, String rating, int price_leve, String photo) {
+    public ResearchResponse(String id, String name, String address, String rating, int price_leve, String photo) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -39,7 +39,7 @@ public class ResearchResponse {
     public ResearchResponse() {
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 

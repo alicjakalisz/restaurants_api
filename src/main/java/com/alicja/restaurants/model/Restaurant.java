@@ -12,7 +12,7 @@ public class Restaurant {
     private long id;
 
     @Column
-    private long address;
+    private String address;
 
     @Column
     private String rating;
@@ -35,7 +35,7 @@ public class Restaurant {
     @Column
     private String comments;
 
-    public Restaurant(long id, long address, String rating, int price_level, String photo, String website, String user_rating_total, String phone_number, String comments) {
+    public Restaurant(long id, String address, String rating, int price_level, String photo, String website, String user_rating_total, String phone_number, String comments) {
         this.id = id;
         this.address = address;
         this.rating = rating;
@@ -54,7 +54,7 @@ public class Restaurant {
         return id;
     }
 
-    public long getAddress() {
+    public String getAddress() {
         return address;
     }
 

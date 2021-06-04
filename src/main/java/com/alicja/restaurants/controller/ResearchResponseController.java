@@ -17,7 +17,7 @@ public class ResearchResponseController {
     private RestaurantService restaurantService;
 
     @Autowired
-    public ResearchResponseController(ResearchResponseService researchResponseService) {
+    public ResearchResponseController(RestaurantService restaurantService) {
         this.restaurantService = restaurantService;
     }
 

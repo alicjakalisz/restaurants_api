@@ -56,8 +56,8 @@ public class ResearchResponseControllerTest {
 
         // mocked result for service
         List<ResearchResponseDto> list = new ArrayList<>();
-        list.add(new ResearchResponseDto(1L,"EatActiv","Poland Street","5",3,"link"));
-        list.add(new ResearchResponseDto(2L,"Pho","UpperStreet","4",2,"link2"));
+        list.add(new ResearchResponseDto("1","EatActiv","Poland Street","5",3,"link"));
+        list.add(new ResearchResponseDto("2","Pho","UpperStreet","4",2,"link2"));
 
         //mocking service method and its result
         when(restaurantService.getResearchResults("London", Optional.of("Vietnamese"),Optional.of(500),Optional.of(5))).thenReturn(list);
@@ -69,9 +69,9 @@ public class ResearchResponseControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith("application/json"))
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[0].id", is("1")))
                 .andExpect(jsonPath("$[0].name", is("EatActiv")))
-                .andExpect(jsonPath("$[1].id", is(2)))
+                .andExpect(jsonPath("$[1].id", is("2")))
                 .andExpect(jsonPath("$[1].name", is("Pho")));
 
         MvcResult result = resultActions.andReturn();
