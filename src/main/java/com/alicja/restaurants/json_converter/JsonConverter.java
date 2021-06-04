@@ -12,7 +12,7 @@ import com.google.gson.JsonParser;
 
 public class JsonConverter {
 
-    public static JsonObject convertStringURLIntoJsonObject(String URL) throws IOException {
+    public JsonObject convertStringURLIntoJsonObject(String URL) throws IOException {
         URL url = new URL(URL);
         StringBuilder result = new StringBuilder();
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
