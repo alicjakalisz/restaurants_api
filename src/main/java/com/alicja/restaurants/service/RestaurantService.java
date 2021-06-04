@@ -4,6 +4,7 @@ import com.alicja.restaurants.dto.ResearchResponseDto;
 import com.alicja.restaurants.dto.RestaurantDto;
 import com.alicja.restaurants.json_converter.JsonConverter;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,27 @@ public class RestaurantService {
             // String website, String user_rating_total, String phone_number, String comments
 
            //TODO get object by ID from JsonObject
+            JsonObject result = jsonObject.get("result").getAsJsonObject();
+           String name =  result.get("name").getAsString();
+           JsonArray addressComponentsList = result.get("address_components").getAsJsonArray();
+           StringBuilder address = new StringBuilder();
+            for (JsonElement element :addressComponentsList) {
+                address.append(element.getAsJsonObject().get("long_name").getAsString());
+            }
+            String addressString = address.toString();
+            String rating = result.get("rating").getAsString();
+            int price_level = result.get("price_level").getAsInt();
+            String photo = result.get("photos").getAsJsonArray().get(0).getAsJsonObject().get("html_attributions").getAsString();
+            String website = result.get("website").getAsString();
+            String ratingTotal = result.get("rating").getAsString();
+            String phone_numer= result.get("formatted_phone_number").getAsString();
+            String comments;
+            ArrayList<String> listdata = new ArrayList<String>();
+
+
+
+
+
 
 
         } catch (IOException e) {
