@@ -77,7 +77,7 @@ public class ResearchResponseDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ResearchResponseDto that = (ResearchResponseDto) o;
-        return id == that.id && price_leve == that.price_leve && Objects.equals(name, that.name) && Objects.equals(address, that.address) && Objects.equals(rating, that.rating) && Objects.equals(photo, that.photo);
+        return price_leve == that.price_leve && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(address, that.address) && Objects.equals(rating, that.rating) && Objects.equals(photo, that.photo);
     }
 
     @Override

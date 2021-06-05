@@ -34,13 +34,10 @@ public class RestaurantControllerTest {
 
     @Test
     public void controllerShouldGetRestaurantById() throws Exception {
-        //mock input for the service
-        //c RestaurantDto(long id, long address, String rating, int price_level, String photo,
-        // String website, String user_rating_total, String phone_number, String comments)
         RestaurantDto restaurantDto = new RestaurantDto("1", "blabla", "3", 3, "link photo", "link website", "5", "1255456", "good food");
 
 
-        when(restaurantService.getRestaurantDtoById("1")).thenReturn(restaurantDto);
+        when(restaurantService.getRestaurantDtoById("1")).thenReturn(Optional.of(restaurantDto));
 
         ResultActions resultActions = mockMvc.perform(get("/restaurants/1"));
         MvcResult mvcResult = resultActions.andReturn();

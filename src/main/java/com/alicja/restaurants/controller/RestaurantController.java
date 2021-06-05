@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @Controller
 public class RestaurantController {
 
@@ -29,9 +31,9 @@ public class RestaurantController {
     //get by id
     //they get the list of ResearchResponse based on their search parameters
     @GetMapping("restaurants/{id}")
-    public ResponseEntity<RestaurantDto> getRestaurantDtoById(@PathVariable(name = "id") String id){
+    public ResponseEntity<Optional<RestaurantDto>> getRestaurantDtoById(@PathVariable(name = "id") String id){
 
-       RestaurantDto result = restaurantService.getRestaurantDtoById(id);
+       Optional<RestaurantDto> result = restaurantService.getRestaurantDtoById(id);
         return ResponseEntity.ok().body(result);
     }
 

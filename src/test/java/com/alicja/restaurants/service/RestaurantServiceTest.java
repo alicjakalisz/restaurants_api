@@ -86,10 +86,10 @@ public class RestaurantServiceTest {
 
         when(converter.convertStringURLIntoJsonObject(any())).thenReturn(jsonObject);
         //String id, String address, String rating, int price_level, String photo, String website, String user_rating_total, String phone_number, String comments
-        RestaurantDto outcome = service.getRestaurantDtoById("ChIJsclcktQEdkgRixfvZ2ewghM");
+        Optional<RestaurantDto> outcome = service.getRestaurantDtoById("ChIJsclcktQEdkgRixfvZ2ewghM");
 
         //TODO
-        RestaurantDto expected = new RestaurantDto();
+        Optional<RestaurantDto> expected = Optional.of(new RestaurantDto());
         assertEquals(expected,outcome);
 
     }

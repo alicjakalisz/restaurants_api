@@ -87,6 +87,42 @@ public class RestaurantDto {
         return comments;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public void setPrice_level(int price_level) {
+        this.price_level = price_level;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public void setUser_rating_total(String user_rating_total) {
+        this.user_rating_total = user_rating_total;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
     @Override
     public String toString() {
         return "Restaurant{" +
@@ -107,7 +143,7 @@ public class RestaurantDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RestaurantDto that = (RestaurantDto) o;
-        return id == that.id && address == that.address && price_level == that.price_level && Objects.equals(rating, that.rating) && Objects.equals(photo, that.photo) && Objects.equals(website, that.website) && Objects.equals(user_rating_total, that.user_rating_total) && Objects.equals(phone_number, that.phone_number) && Objects.equals(comments, that.comments);
+        return price_level == that.price_level && Objects.equals(id, that.id) && Objects.equals(address, that.address) && Objects.equals(rating, that.rating) && Objects.equals(photo, that.photo) && Objects.equals(website, that.website) && Objects.equals(user_rating_total, that.user_rating_total) && Objects.equals(phone_number, that.phone_number) && Objects.equals(comments, that.comments);
     }
 
     @Override

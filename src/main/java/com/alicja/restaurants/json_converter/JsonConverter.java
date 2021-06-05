@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import com.alicja.restaurants.exception.SearchException;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -19,6 +21,9 @@ public class JsonConverter {
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Content-Type", "application/json");
         conn.setRequestProperty("Accept", "application/json");
+        if(conn.getResponseCode()!=200){
+            throw new SearchException("No results for search these parameters");
+        }
         BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         String line;
         while ((line = rd.readLine()) != null) {
