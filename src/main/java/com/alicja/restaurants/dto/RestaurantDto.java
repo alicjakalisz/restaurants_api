@@ -1,10 +1,8 @@
 package com.alicja.restaurants.dto;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectWriter;
-
-import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Objects;
+import java.util.Optional;
 
 public class RestaurantDto {
 
@@ -19,7 +17,7 @@ public class RestaurantDto {
     private String rating;
 
 
-    private int price_level;
+    private Optional<Integer> priceLevel;
 
 
     private String photo;
@@ -28,23 +26,23 @@ public class RestaurantDto {
     private String website;
 
 
-    private String user_rating_total;
+    private String userRatingTotal;
 
 
-    private String phone_number;
+    private String phoneNumber;
 
 
     private String comments;
 
-    public RestaurantDto(String id, String address, String rating, int price_level, String photo, String website, String user_rating_total, String phone_number, String comments) {
+    public RestaurantDto(String id, String address, String rating, Optional<Integer> priceLevel, String photo, String website, String userRatingTotal, String phoneNumber, String comments) {
         this.id = id;
         this.address = address;
         this.rating = rating;
-        this.price_level = price_level;
+        this.priceLevel = priceLevel;
         this.photo = photo;
         this.website = website;
-        this.user_rating_total = user_rating_total;
-        this.phone_number = phone_number;
+        this.userRatingTotal = userRatingTotal;
+        this.phoneNumber = phoneNumber;
         this.comments = comments;
     }
 
@@ -63,8 +61,8 @@ public class RestaurantDto {
         return rating;
     }
 
-    public int getPrice_level() {
-        return price_level;
+    public Optional<Integer> getPriceLevel() {
+        return priceLevel;
     }
 
     public String getPhoto() {
@@ -75,12 +73,12 @@ public class RestaurantDto {
         return website;
     }
 
-    public String getUser_rating_total() {
-        return user_rating_total;
+    public String getUserRatingTotal() {
+        return userRatingTotal;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public String getComments() {
@@ -99,8 +97,8 @@ public class RestaurantDto {
         this.rating = rating;
     }
 
-    public void setPrice_level(int price_level) {
-        this.price_level = price_level;
+    public void setPriceLevel(Optional<Integer> priceLevel) {
+        this.priceLevel = priceLevel;
     }
 
     public void setPhoto(String photo) {
@@ -111,12 +109,12 @@ public class RestaurantDto {
         this.website = website;
     }
 
-    public void setUser_rating_total(String user_rating_total) {
-        this.user_rating_total = user_rating_total;
+    public void setUserRatingTotal(String userRatingTotal) {
+        this.userRatingTotal = userRatingTotal;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public void setComments(String comments) {
@@ -129,11 +127,11 @@ public class RestaurantDto {
                 "id=" + id +
                 ", address=" + address +
                 ", rating='" + rating + '\'' +
-                ", price_level=" + price_level +
+                ", price_level=" + priceLevel +
                 ", photo='" + photo + '\'' +
                 ", website='" + website + '\'' +
-                ", user_rating_total='" + user_rating_total + '\'' +
-                ", phone_number='" + phone_number + '\'' +
+                ", user_rating_total='" + userRatingTotal + '\'' +
+                ", phone_number='" + phoneNumber + '\'' +
                 ", comments='" + comments + '\'' +
                 '}';
     }
@@ -143,11 +141,11 @@ public class RestaurantDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RestaurantDto that = (RestaurantDto) o;
-        return price_level == that.price_level && Objects.equals(id, that.id) && Objects.equals(address, that.address) && Objects.equals(rating, that.rating) && Objects.equals(photo, that.photo) && Objects.equals(website, that.website) && Objects.equals(user_rating_total, that.user_rating_total) && Objects.equals(phone_number, that.phone_number) && Objects.equals(comments, that.comments);
+        return priceLevel.equals(that.priceLevel) && Objects.equals(id, that.id) && Objects.equals(address, that.address) && Objects.equals(rating, that.rating) && Objects.equals(photo, that.photo) && Objects.equals(website, that.website) && Objects.equals(userRatingTotal, that.userRatingTotal) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(comments, that.comments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, address, rating, price_level, photo, website, user_rating_total, phone_number, comments);
+        return Objects.hash(id, address, rating, priceLevel, photo, website, userRatingTotal, phoneNumber, comments);
     }
 }

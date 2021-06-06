@@ -1,8 +1,10 @@
 package com.alicja.restaurants.controller;
 
 import com.alicja.restaurants.dto.ResearchResponseDto;
+import com.alicja.restaurants.exception.SearchException;
 import com.alicja.restaurants.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,11 +43,15 @@ public class ResearchResponseController {
     //http://localhost:8080/restaurants/search?location=London&cuisine=vegan&radius=6000&rating=3
     @GetMapping("restaurants/search")
     public ResponseEntity<List<ResearchResponseDto>> getResearchResults(@RequestParam(value = "location", required = true) String location,
-                                                        @RequestParam(value = "cuisine", required = false) String cuisine,
-                                                        @RequestParam(value = "radius", defaultValue = "5000") Integer radius,
-                                                        @RequestParam(value = "rating", required = false) Integer rating) {
-        List<ResearchResponseDto> result = restaurantService.getResearchResults( location, Optional.ofNullable(cuisine),Optional.ofNullable(radius),Optional.ofNullable(rating));
-        return ResponseEntity.ok().body(result);
+                                                                        @RequestParam(value = "cuisine", required = false) String cuisine,
+                                                                        @RequestParam(value = "radius", defaultValue = "5000") Integer radius,
+                                                                        @RequestParam(value = "rating", required = false) Integer rating) throws SearchException {
+        List<ResearchResponseDto> result = restaurantService.getResearchResults(location, Optional.ofNullable(cuisine), Optional.ofNullable(radius), Optional.ofNullable(rating));
+        if (ResponseEntity.ok().body(result).getStatusCode() != HttpStatus.ACCEPTED) {
+            throw new SearchException("Wrong params");
+        } else {
+            return ResponseEntity.ok().body(result);
+        }
     }
 
 }

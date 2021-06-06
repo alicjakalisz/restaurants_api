@@ -1,6 +1,6 @@
 package com.alicja.restaurants.exception;
 
-public class SearchException extends RuntimeException{
+public class SearchException extends Exception{
     public SearchException(String errorMessage){
         super(errorMessage);
     }

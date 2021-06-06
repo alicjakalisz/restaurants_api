@@ -14,7 +14,7 @@ import com.google.gson.JsonParser;
 
 public class JsonConverter {
 
-    public JsonObject convertStringURLIntoJsonObject(String URL) throws IOException {
+    public JsonObject convertStringURLIntoJsonObject(String URL) throws IOException, SearchException {
         URL url = new URL(URL);
         StringBuilder result = new StringBuilder();
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -22,7 +22,7 @@ public class JsonConverter {
         conn.setRequestProperty("Content-Type", "application/json");
         conn.setRequestProperty("Accept", "application/json");
         if(conn.getResponseCode()!=200){
-            throw new SearchException("No results for search these parameters");
+            throw new SearchException("No results for search of these parameters");
         }
         BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         String line;

@@ -34,7 +34,7 @@ public class RestaurantControllerTest {
 
     @Test
     public void controllerShouldGetRestaurantById() throws Exception {
-        RestaurantDto restaurantDto = new RestaurantDto("1", "blabla", "3", 3, "link photo", "link website", "5", "1255456", "good food");
+        RestaurantDto restaurantDto = new RestaurantDto("1", "blabla", "3", Optional.ofNullable(3), "link photo", "link website", "5", "1255456", "good food");
 
 
         when(restaurantService.getRestaurantDtoById("1")).thenReturn(Optional.of(restaurantDto));

@@ -1,9 +1,5 @@
 package com.alicja.restaurants.dto;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectWriter;
-
-import javax.persistence.*;
 import java.util.Objects;
 public class ResearchResponseDto {
 
@@ -19,7 +15,7 @@ public class ResearchResponseDto {
 
     private String rating;
 
-    private int price_leve;
+    private int priceLevel;
 
 
     private String photo;
@@ -29,7 +25,7 @@ public class ResearchResponseDto {
         this.name = name;
         this.address = address;
         this.rating = rating;
-        this.price_leve = price_leve;
+        this.priceLevel = price_leve;
         this.photo = photo;
     }
 
@@ -52,8 +48,8 @@ public class ResearchResponseDto {
         return rating;
     }
 
-    public int getPrice_leve() {
-        return price_leve;
+    public int getPriceLevel() {
+        return priceLevel;
     }
 
     public String getPhoto() {
@@ -67,7 +63,7 @@ public class ResearchResponseDto {
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", rating='" + rating + '\'' +
-                ", price_leve=" + price_leve +
+                ", price_leve=" + priceLevel +
                 ", photo='" + photo + '\'' +
                 '}';
     }
@@ -77,12 +73,12 @@ public class ResearchResponseDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ResearchResponseDto that = (ResearchResponseDto) o;
-        return price_leve == that.price_leve && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(address, that.address) && Objects.equals(rating, that.rating) && Objects.equals(photo, that.photo);
+        return priceLevel == that.priceLevel && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(address, that.address) && Objects.equals(rating, that.rating) && Objects.equals(photo, that.photo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, address, rating, price_leve, photo);
+        return Objects.hash(id, name, address, rating, priceLevel, photo);
     }
 }
 
