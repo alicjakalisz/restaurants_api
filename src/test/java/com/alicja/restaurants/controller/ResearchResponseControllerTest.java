@@ -56,8 +56,8 @@ public class ResearchResponseControllerTest {
 
         // mocked result for service
         List<ResearchResponseDto> list = new ArrayList<>();
-        list.add(new ResearchResponseDto("1","EatActiv","Poland Street","5",3,"link"));
-        list.add(new ResearchResponseDto("2","Pho","UpperStreet","4",2,"link2"));
+        list.add(new ResearchResponseDto("1","EatActiv","Poland Street","5",Optional.of(3),"link"));
+        list.add(new ResearchResponseDto("2","Pho","UpperStreet","4",Optional.of(3),"link2"));
 
         //mocking service method and its result
         when(restaurantService.getResearchResults("London", Optional.of("Vietnamese"),Optional.of(500),Optional.of(5))).thenReturn(list);

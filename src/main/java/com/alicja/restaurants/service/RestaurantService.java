@@ -105,15 +105,15 @@ public class RestaurantService {
                 String address = resultJsonObj.get("formatted_address").getAsString();
                 String rating1 = resultJsonObj.get("rating").getAsString();
 
-                Optional<String> priceLevel=Optional.empty();
+                Optional<Integer> priceLevel=Optional.empty();
                 if (result.getAsJsonObject().get("price_level") != null) {
-                    priceLevel =Optional.of(result.getAsJsonObject().get("price_level").getAsString());
+                    priceLevel =Optional.of(result.getAsJsonObject().get("price_level").getAsInt());
                 }
 
-                String price_level= resultJsonObj.get("price_level").getAsString();
+
                 String photo = resultJsonObj.get("photos").getAsJsonArray().get(0).getAsJsonObject().get("html_attributions").getAsString();
 
-                researchResponseDtosList.add(new ResearchResponseDto(placeId, name, address, rating1, Integer.parseInt(price_level), photo));
+                researchResponseDtosList.add(new ResearchResponseDto(placeId, name, address, rating1,priceLevel , photo));
             });
 
         } catch (IOException | SearchException e) {

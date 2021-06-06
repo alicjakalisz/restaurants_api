@@ -1,6 +1,8 @@
 package com.alicja.restaurants.dto;
 
 import java.util.Objects;
+import java.util.Optional;
+
 public class ResearchResponseDto {
 
 
@@ -15,12 +17,12 @@ public class ResearchResponseDto {
 
     private String rating;
 
-    private int priceLevel;
+    private Optional<Integer> priceLevel;
 
 
     private String photo;
 
-    public ResearchResponseDto(String id, String name, String address, String rating, int price_leve, String photo) {
+    public ResearchResponseDto(String id, String name, String address, String rating, Optional<Integer> price_leve, String photo) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -48,7 +50,7 @@ public class ResearchResponseDto {
         return rating;
     }
 
-    public int getPriceLevel() {
+    public Optional<Integer> getPriceLevel() {
         return priceLevel;
     }
 
@@ -73,7 +75,7 @@ public class ResearchResponseDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ResearchResponseDto that = (ResearchResponseDto) o;
-        return priceLevel == that.priceLevel && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(address, that.address) && Objects.equals(rating, that.rating) && Objects.equals(photo, that.photo);
+        return priceLevel.equals(that.priceLevel) && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(address, that.address) && Objects.equals(rating, that.rating) && Objects.equals(photo, that.photo);
     }
 
     @Override
