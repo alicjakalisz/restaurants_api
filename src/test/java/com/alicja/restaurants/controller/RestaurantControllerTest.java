@@ -45,6 +45,12 @@ public class RestaurantControllerTest {
         RestaurantDto outcome = objectMapper.readValue(contentString, new TypeReference<RestaurantDto>() {
         });
         assertEquals(outcome, restaurantDto);
+
+    }
+
+    @Test
+    public void controllerShouldReturn400StatusWhenTheIdDoesNotExist() throws Exception {
+        //when(restaurantService.getRestaurantDtoById("100")).thenReturn(Optional.of(restaurantDto));
     }
 
 

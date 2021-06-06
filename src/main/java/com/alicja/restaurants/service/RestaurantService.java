@@ -2,6 +2,7 @@ package com.alicja.restaurants.service;
 
 import com.alicja.restaurants.dto.ResearchResponseDto;
 import com.alicja.restaurants.dto.RestaurantDto;
+import com.alicja.restaurants.exception.SearchException;
 import com.alicja.restaurants.json_converter.JsonConverter;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -87,6 +88,9 @@ public class RestaurantService {
             restaurantDto.setComments(commentsString);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        catch (SearchException e){
+            return Optional.empty();
         }
         //todo another catch throw null
         return Optional.of(restaurantDto);

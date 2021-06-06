@@ -34,6 +34,7 @@ public class RestaurantController {
     public ResponseEntity<Optional<RestaurantDto>> getRestaurantDtoById(@PathVariable(name = "id") String id){
 
        Optional<RestaurantDto> result = restaurantService.getRestaurantDtoById(id);
+       //TODO
         return ResponseEntity.ok().body(result);
     }
 

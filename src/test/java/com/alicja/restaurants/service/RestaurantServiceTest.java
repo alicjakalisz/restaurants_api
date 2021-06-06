@@ -3,6 +3,7 @@ package com.alicja.restaurants.service;
 
 import com.alicja.restaurants.dto.ResearchResponseDto;
 import com.alicja.restaurants.dto.RestaurantDto;
+import com.alicja.restaurants.exception.SearchException;
 import com.alicja.restaurants.json_converter.JsonConverter;
 import com.alicja.restaurants.service.RestaurantService;
 import com.google.gson.JsonObject;
@@ -92,5 +93,18 @@ public class RestaurantServiceTest {
         Optional<RestaurantDto> expected = Optional.of(new RestaurantDto());
         assertEquals(expected,outcome);
 
+    }
+
+
+    @Test
+    public void testThatWhenTheIdDoesNotExistThenReturnsAnEmptyOptionalRestaurant() throws IOException {
+        //TODO
+        Optional<RestaurantDto> expected = Optional.empty();
+
+        //Do a mock
+        when(converter.convertStringURLIntoJsonObject(any())).thenThrow(new SearchException("The id sfdadfsafds does not exist."));
+        Optional<RestaurantDto> outcome = service.getRestaurantDtoById("sfdadfsafds");
+
+        assertEquals(expected,outcome);
     }
 }
