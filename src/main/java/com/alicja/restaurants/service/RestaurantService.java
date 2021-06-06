@@ -104,7 +104,13 @@ public class RestaurantService {
                 String name = resultJsonObj.get("name").getAsString();
                 String address = resultJsonObj.get("formatted_address").getAsString();
                 String rating1 = resultJsonObj.get("rating").getAsString();
-                String price_level = resultJsonObj.get("price_level").getAsString();
+
+                Optional<String> priceLevel=Optional.empty();
+                if (result.getAsJsonObject().get("price_level") != null) {
+                    priceLevel =Optional.of(result.getAsJsonObject().get("price_level").getAsString());
+                }
+
+                String price_level= resultJsonObj.get("price_level").getAsString();
                 String photo = resultJsonObj.get("photos").getAsJsonArray().get(0).getAsJsonObject().get("html_attributions").getAsString();
 
                 researchResponseDtosList.add(new ResearchResponseDto(placeId, name, address, rating1, Integer.parseInt(price_level), photo));
