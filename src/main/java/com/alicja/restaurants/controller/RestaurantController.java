@@ -28,11 +28,16 @@ public class RestaurantController {
         this.restaurantService =  restaurantService;
     }
     @GetMapping("restaurants/{id}")
-    public ResponseEntity<Optional<RestaurantDto>> getRestaurantDtoById(@PathVariable(name = "id") String id){
+    public ResponseEntity<RestaurantDto> getRestaurantDtoById(@PathVariable(name = "id") String id){
 
        Optional<RestaurantDto> result = restaurantService.getRestaurantDtoById(id);
-       //TODO
-        return ResponseEntity.ok().body(result);
+       // from optional to response entity depending if found or not
+        if(result.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        else{
+            return ResponseEntity.ok().body(result.get());
+        }
     }
 
 
