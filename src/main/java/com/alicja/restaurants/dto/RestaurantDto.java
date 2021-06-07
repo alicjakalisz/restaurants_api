@@ -7,7 +7,6 @@ import java.util.Optional;
 public class RestaurantDto {
 
 
-
     private String id;
 
 
@@ -141,7 +140,15 @@ public class RestaurantDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RestaurantDto that = (RestaurantDto) o;
-        return priceLevel.equals(that.priceLevel) && Objects.equals(id, that.id) && Objects.equals(address, that.address) && Objects.equals(rating, that.rating) && Objects.equals(photo, that.photo) && Objects.equals(website, that.website) && Objects.equals(userRatingTotal, that.userRatingTotal) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(comments, that.comments);
+        return priceLevel.equals(that.priceLevel)
+                && Objects.equals(id, that.id)
+                && Objects.equals(address, that.address)
+                && Objects.equals(rating, that.rating)
+                && Objects.equals(photo, that.photo)
+                && Objects.equals(website, that.website)
+                && Objects.equals(userRatingTotal, that.userRatingTotal)
+                && Objects.equals(phoneNumber, that.phoneNumber)
+                && Objects.equals(comments, that.comments);
     }
 
     @Override

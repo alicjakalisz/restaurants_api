@@ -44,12 +44,13 @@ public class RestaurantService {
             JsonObject result = jsonObject.get("result").getAsJsonObject();
             String name = result.get("name").getAsString();
             JsonArray addressComponentsList = result.get("address_components").getAsJsonArray();
-            StringBuilder address = new StringBuilder();
+
+            List<String> addressList = new ArrayList<>();
             for (JsonElement element : addressComponentsList) {
-                address.append(element.getAsJsonObject().get("long_name").getAsString()).append(" ");
+                addressList.add(element.getAsJsonObject().get("long_name").getAsString());
             }
-            String addressString = address.toString();
-            String addressResult = String.join(",",addressString);
+
+            String addressResult = String.join(",",addressList);
             String rating = result.get("rating").getAsString();
 
             Optional<Integer> priceLevel = Optional.empty();
@@ -61,13 +62,12 @@ public class RestaurantService {
             String website = result.get("website").getAsString();
             String ratingTotal = result.get("rating").getAsString();
             String phoneNumber = result.get("formatted_phone_number").getAsString();
-            StringBuilder comments = new StringBuilder();
+            List<String> listComments = new ArrayList<>();
             JsonArray reviews = result.get("reviews").getAsJsonArray();
             for (JsonElement e : reviews) {
-                comments.append(e.getAsJsonObject().get("text").getAsString());
-                comments.append(" ");
+                listComments.add(e.getAsJsonObject().get("text").getAsString());
             }
-            String commentsString = String.join(",", comments.toString());
+            String commentsString = String.join(",", listComments);
 
 
             restaurantDto.setId(id);
