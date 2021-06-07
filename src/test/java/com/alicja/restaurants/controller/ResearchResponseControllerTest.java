@@ -43,26 +43,15 @@ public class ResearchResponseControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-
     @Test
     public void controllerShouldGetRestaurantsFromServiceBasedOnSearchParam() throws Exception {
 
-        //"id"
-        //		"name"
-        //		"address"
-        //		"rating"
-        //		"price_level"
-        //		"photo"
-
-        // mocked result for service
         List<ResearchResponseDto> list = new ArrayList<>();
         list.add(new ResearchResponseDto("1","EatActiv","Poland Street","5",Optional.of(3),"link"));
         list.add(new ResearchResponseDto("2","Pho","UpperStreet","4",Optional.of(3),"link2"));
 
         //mocking service method and its result
         when(restaurantService.getResearchResults("London", Optional.of("Vietnamese"),Optional.of(500),Optional.of(5))).thenReturn(list);
-
-        //checking if single elements of json match the expected result
 
         ResultActions resultActions = mockMvc.perform(get("/restaurants/search?location=London&cuisine=Vietnamese&radius=500&rating=5"))
                 .andDo(print())
@@ -81,8 +70,6 @@ public class ResearchResponseControllerTest {
         List<ResearchResponseDto> outcome = objectMapper.readValue(contentString, new TypeReference<List<ResearchResponseDto>>() {
         });
         assertEquals(outcome, list);
-
-        //.andExpect(content().json("{\"a\":\"1\"}"));
     }
     @Test
     public void shouldReturnErrorResponseIfLocationParamNotEntered() throws Exception{

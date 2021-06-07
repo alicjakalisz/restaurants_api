@@ -18,11 +18,8 @@ import java.util.Optional;
 @Service
 public class RestaurantService {
 
-
     static String prefixURLDetails = "https://maps.googleapis.com/maps/api/place/details/json?language=en&place_id=";
-
     static String prefixURLSearch = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+";
-
     private final JsonConverter jsonConverter;
 
     @Autowired
@@ -30,9 +27,6 @@ public class RestaurantService {
         this.jsonConverter = jsonConverter;
     }
 
-    //FIRST METHOD
-
-    //todo returns optional //correct mock to return opiotional as well
     public Optional<RestaurantDto> getRestaurantDtoById(String id) {
         RestaurantDto restaurantDto = new RestaurantDto();
         String apiKey = "AIzaSyCDmH0lnztl9AHa1bjP11bEQzlh2vRYH5A";
@@ -69,7 +63,6 @@ public class RestaurantService {
             }
             String commentsString = String.join(",", listComments);
 
-
             restaurantDto.setId(id);
             restaurantDto.setAddress(addressResult);
             restaurantDto.setRating(rating);
@@ -87,7 +80,6 @@ public class RestaurantService {
         return Optional.of(restaurantDto);
     }
 
-    // SECOND METHOD
     public List<ResearchResponseDto> getResearchResults(String location, Optional<String> cuisine, Optional<Integer> radius, Optional<Integer> rating) {
         String searchListUrl = prefixURLSearch + "+" + location + "+" + cuisine + "&radius=" + radius + "&alt=json&key=";
         String apiKey = "AIzaSyCDmH0lnztl9AHa1bjP11bEQzlh2vRYH5A";
@@ -109,8 +101,6 @@ public class RestaurantService {
                 if (result.getAsJsonObject().get("price_level") != null) {
                     priceLevel =Optional.of(result.getAsJsonObject().get("price_level").getAsInt());
                 }
-
-
                 String photo = resultJsonObj.get("photos").getAsJsonArray().get(0).getAsJsonObject().get("html_attributions").getAsString();
 
                 researchResponseDtosList.add(new ResearchResponseDto(placeId, name, address, rating1,priceLevel , photo));
@@ -119,7 +109,6 @@ public class RestaurantService {
         } catch (IOException | SearchException e) {
             e.printStackTrace();
         }
-
         return researchResponseDtosList;
     }
 }

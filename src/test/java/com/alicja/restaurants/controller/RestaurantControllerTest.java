@@ -12,7 +12,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Optional;
 
@@ -52,6 +51,5 @@ public class RestaurantControllerTest {
     public void controllerShouldReturn400StatusWhenTheIdDoesNotExist() throws Exception {
         //when(restaurantService.getRestaurantDtoById("100")).thenReturn(Optional.of(restaurantDto));
     }
-
 
 }

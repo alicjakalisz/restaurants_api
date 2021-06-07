@@ -8,17 +8,13 @@ public class ResearchResponseDto {
 
     private String id;
 
-
     private String name;
 
-
     private String address;
-
 
     private String rating;
 
     private Optional<Integer> priceLevel;
-
 
     private String photo;
 
