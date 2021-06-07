@@ -56,12 +56,12 @@ public class ResearchResponseController {
     //If a required @RequestParam is not present in the request, Spring will throw a MissingServletRequestParameterException exception.
     // You can define an @ExceptionHandler in the same controller or in a @ControllerAdvice to handle that exception:
 
-    @ExceptionHandler(MissingServletRequestParameterException.class)
+   /* @ExceptionHandler(MissingServletRequestParameterException.class)
     public void handleMissingParams(MissingServletRequestParameterException ex) {
         String name = ex.getParameterName();
         System.out.println(name + " parameter is missing");
         // Actual exception handling
-    }
+    }*/
 }
 
 
