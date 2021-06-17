@@ -4,16 +4,21 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.alicja.restaurants.exception.SearchException;
-import com.google.gson.JsonArray;
+import com.alicja.restaurants.exception.SearchException;;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class JsonConverter {
 
+    /**
+     * Connects to URL, read the content into String and transforms String into Json Object
+     * @param URL
+     * @return
+     * @throws IOException
+     * @throws SearchException
+     */
     public JsonObject convertStringURLIntoJsonObject(String URL) throws IOException, SearchException {
         URL url = new URL(URL);
         StringBuilder result = new StringBuilder();

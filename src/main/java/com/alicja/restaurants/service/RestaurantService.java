@@ -20,6 +20,9 @@ public class RestaurantService {
 
     static String prefixURLDetails = "https://maps.googleapis.com/maps/api/place/details/json?language=en&place_id=";
     static String prefixURLSearch = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+";
+    //TODO change the apiKey if you want to use the live version
+    static String apiKeyRestaurantDetail = "${PLACE_HERE_YOUR_GOOGLE_API_KEY}";
+    static String apiKeyRestaurantList = "${PLACE_HERE_YOUR_GOOGLE_API_KEY}";
     private final JsonConverter jsonConverter;
 
     @Autowired
@@ -27,14 +30,19 @@ public class RestaurantService {
         this.jsonConverter = jsonConverter;
     }
 
+
+    /**
+     * Finds the restaurant by id and returns the detailed restaurant info in case it exists.
+     *
+     * @param id The restaurant Id
+     * @return In case the restaurant does not exist it returns an empty value.
+     */
     public Optional<RestaurantDto> getRestaurantDtoById(String id) {
         RestaurantDto restaurantDto = new RestaurantDto();
-        String apiKey = "AIzaSyCDmH0lnztl9AHa1bjP11bEQzlh2vRYH5A";
-        String urlDetails = prefixURLDetails + id + "&key=" + apiKey;
+        String urlDetails = prefixURLDetails + id + "&key=" + apiKeyRestaurantDetail;
 
         try {
             JsonObject jsonObject = jsonConverter.convertStringURLIntoJsonObject(urlDetails);
-            //TODO get object by ID from JsonObject
             JsonObject result = jsonObject.get("result").getAsJsonObject();
             String name = result.get("name").getAsString();
             JsonArray addressComponentsList = result.get("address_components").getAsJsonArray();
@@ -44,17 +52,16 @@ public class RestaurantService {
                 addressList.add(element.getAsJsonObject().get("long_name").getAsString());
             }
 
-            String addressResult = String.join(",",addressList);
+            String addressResult = String.join(",", addressList);
             String rating = result.get("rating").getAsString();
 
             Optional<Integer> priceLevel = Optional.empty();
             if (result.get("price_level") != null) {
-                priceLevel =Optional.of(result.get("price_level").getAsInt());
+                priceLevel = Optional.of(result.get("price_level").getAsInt());
             }
 
             String photo = result.get("photos").getAsJsonArray().get(0).getAsJsonObject().get("html_attributions").getAsString();
             String website = result.get("website").getAsString();
-            String ratingTotal = result.get("rating").getAsString();
             String phoneNumber = result.get("formatted_phone_number").getAsString();
             List<String> listComments = new ArrayList<>();
             JsonArray reviews = result.get("reviews").getAsJsonArray();
@@ -80,30 +87,36 @@ public class RestaurantService {
         return Optional.of(restaurantDto);
     }
 
+    /**
+     * Returns a list of restaurants based on the different parameters.
+     *
+     * @param location
+     * @param cuisine
+     * @param radius
+     * @param rating
+     * @return
+     */
     public List<ResearchResponseDto> getResearchResults(String location, Optional<String> cuisine, Optional<Integer> radius, Optional<Integer> rating) {
         String searchListUrl = prefixURLSearch + "+" + location + "+" + cuisine + "&radius=" + radius + "&alt=json&key=";
-        String apiKey = "AIzaSyCDmH0lnztl9AHa1bjP11bEQzlh2vRYH5A";
-        searchListUrl = searchListUrl + apiKey;
+        searchListUrl = searchListUrl + apiKeyRestaurantList;
         List<ResearchResponseDto> researchResponseDtosList = new ArrayList<>();
 
         try {
             JsonObject jsonObject = jsonConverter.convertStringURLIntoJsonObject(searchListUrl);
-            System.out.println(jsonObject);
             JsonArray results = jsonObject.get("results").getAsJsonArray();
             results.forEach(result -> {
-                JsonObject resultJsonObj=result.getAsJsonObject();
+                JsonObject resultJsonObj = result.getAsJsonObject();
                 String placeId = resultJsonObj.get("place_id").getAsString();
                 String name = resultJsonObj.get("name").getAsString();
                 String address = resultJsonObj.get("formatted_address").getAsString();
                 String rating1 = resultJsonObj.get("rating").getAsString();
 
-                Optional<Integer> priceLevel=Optional.empty();
+                Optional<Integer> priceLevel = Optional.empty();
                 if (result.getAsJsonObject().get("price_level") != null) {
-                    priceLevel =Optional.of(result.getAsJsonObject().get("price_level").getAsInt());
+                    priceLevel = Optional.of(result.getAsJsonObject().get("price_level").getAsInt());
                 }
                 String photo = resultJsonObj.get("photos").getAsJsonArray().get(0).getAsJsonObject().get("html_attributions").getAsString();
-
-                researchResponseDtosList.add(new ResearchResponseDto(placeId, name, address, rating1,priceLevel , photo));
+                researchResponseDtosList.add(new ResearchResponseDto(placeId, name, address, rating1, priceLevel, photo));
             });
 
         } catch (IOException | SearchException e) {

@@ -9,27 +9,19 @@ public class RestaurantDto {
 
     private String id;
 
-
     private String address;
-
 
     private String rating;
 
-
     private Optional<Integer> priceLevel;
-
 
     private String photo;
 
-
     private String website;
-
 
     private String userRatingTotal;
 
-
     private String phoneNumber;
-
 
     private String comments;
 
@@ -150,7 +142,6 @@ public class RestaurantDto {
                 && Objects.equals(phoneNumber, that.phoneNumber)
                 && Objects.equals(comments, that.comments);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id, address, rating, priceLevel, photo, website, userRatingTotal, phoneNumber, comments);
