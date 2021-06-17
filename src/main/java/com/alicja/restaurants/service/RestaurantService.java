@@ -21,8 +21,8 @@ public class RestaurantService {
     static String prefixURLDetails = "https://maps.googleapis.com/maps/api/place/details/json?language=en&place_id=";
     static String prefixURLSearch = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+";
     //TODO change the apiKey if you want to use the live version
-    static String apiKeyRestaurantDetail = "${PLACE_HERE_YOUR_GOOGLE_API_KEY}";
-    static String apiKeyRestaurantList = "${PLACE_HERE_YOUR_GOOGLE_API_KEY}";
+    static String apiKey = "${PLACE_HERE_YOUR_GOOGLE_API_KEY}";
+
     private final JsonConverter jsonConverter;
 
     @Autowired
@@ -39,7 +39,7 @@ public class RestaurantService {
      */
     public Optional<RestaurantDto> getRestaurantDtoById(String id) {
         RestaurantDto restaurantDto = new RestaurantDto();
-        String urlDetails = prefixURLDetails + id + "&key=" + apiKeyRestaurantDetail;
+        String urlDetails = prefixURLDetails + id + "&key=" + apiKey;
 
         try {
             JsonObject jsonObject = jsonConverter.convertStringURLIntoJsonObject(urlDetails);
@@ -98,7 +98,7 @@ public class RestaurantService {
      */
     public List<ResearchResponseDto> getResearchResults(String location, Optional<String> cuisine, Optional<Integer> radius, Optional<Integer> rating) {
         String searchListUrl = prefixURLSearch + "+" + location + "+" + cuisine + "&radius=" + radius + "&alt=json&key=";
-        searchListUrl = searchListUrl + apiKeyRestaurantList;
+        searchListUrl = searchListUrl + apiKey;
         List<ResearchResponseDto> researchResponseDtosList = new ArrayList<>();
 
         try {
