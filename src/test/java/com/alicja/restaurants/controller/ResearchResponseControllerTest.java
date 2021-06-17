@@ -77,5 +77,11 @@ public class ResearchResponseControllerTest {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+    @Test
+    public void shouldReturnErrorResponseIfLocationParamNotEntered() throws Exception{
+        ResultActions resultActions = mockMvc.perform(get("/restaurants/search?cuisine=Vietnamese&radius=500&rating=5"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
 
 }
