@@ -1,6 +1,5 @@
 package com.alicja.restaurants.dto;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Objects;
 import java.util.Optional;
 
