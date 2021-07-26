@@ -21,7 +21,7 @@ public class RestaurantService {
     static String prefixURLDetails = "https://maps.googleapis.com/maps/api/place/details/json?language=en&place_id=";
     static String prefixURLSearch = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+";
     //TODO change the apiKey if you want to use the live version
-    static String apiKey = "ENTER YOUR OWN API KEY";
+    static String apiKey = "AIzaSyBM75nEqeQ9ZeFB0VYnHhccTg0WA-gl_G8";
 
     private final JsonConverter jsonConverter;
 
