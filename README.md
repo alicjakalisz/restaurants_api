@@ -1,4 +1,4 @@
-# Restaurant API
+# Restaurants API
 This api allows retrieving restaurants detailed information. This API is based on Google API.
 ## Table of contents
 * [General info](#general-info)
